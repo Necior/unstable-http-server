@@ -39,10 +39,6 @@ func info(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hostname: %s\nPID: %d\n", host, os.Getpid())
 }
 
-func oof(w http.ResponseWriter, r *http.Request) {
-	os.Exit(1)
-}
-
 func cpu(w http.ResponseWriter, r *http.Request) {
 	for {
 	}
@@ -54,6 +50,10 @@ func ram(w http.ResponseWriter, r *http.Request) {
 		s = s + s[:len(s)/10]
 		time.Sleep(100 * time.Millisecond)
 	}
+}
+
+func oof(w http.ResponseWriter, r *http.Request) {
+	os.Exit(1)
 }
 
 func main() {
