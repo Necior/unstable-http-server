@@ -63,5 +63,7 @@ func main() {
 	http.HandleFunc("/cpu", cpu)
 	http.HandleFunc("/ram", ram)
 
+	fmt.Printf("Trying to serve on 0.0.0.0:8080\n")
+	fmt.Printf("  → http://127.0.0.1:8080\n")
 	http.ListenAndServe(":8080", nil)
 }
