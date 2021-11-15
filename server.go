@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html"
 	"net/http"
 	"os"
 	"time"
@@ -20,6 +21,7 @@ func root(w http.ResponseWriter, r *http.Request) {
 <title>unstable-http-server</title>
 </head>
 <body><p>`)
+	e := html.EscapeString
 	for _, entry := range []MenuEntry{
 		MenuEntry{"", "Home", "you are here"},
 		MenuEntry{"info", "Info", "basic server info (e.g. hostname)"},
@@ -27,7 +29,7 @@ func root(w http.ResponseWriter, r *http.Request) {
 		MenuEntry{"ram", "RAM", "start exponential memory allocation"},
 		MenuEntry{"oof", "Oof", "kill the server"},
 	} {
-		fmt.Fprintf(w, "<a href=\"/%s\">%s</a> (%s)<br/>", entry.endpoint, entry.name, entry.desc)
+		fmt.Fprintf(w, "<a href=\"/%s\">%s</a> (%s)<br/>", e(entry.endpoint), e(entry.name), e(entry.desc))
 	}
 }
 
