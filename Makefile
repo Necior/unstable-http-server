@@ -1,15 +1,15 @@
-server: server.go
-	go build server.go
+unstable-http-server: unstable-http-server.go
+	go build unstable-http-server.go
 
 .PHONY:
-format: server.go
-	go fmt server.go
+format: unstable-http-server.go
+	go fmt unstable-http-server.go
 
 .PHONY:
-run: server
-	./server
+run: unstable-http-server
+	./unstable-http-server
 
 .PHONY:
-publish-dev-docker-image: server.go Dockerfile
+publish-dev-docker-image: unstable-http-server.go Dockerfile
 	docker buildx build --platform linux/arm64,linux/amd64 -t necior/unstable-http-server:dev --push .
 
