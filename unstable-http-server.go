@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "embed"
 	"fmt"
 	"html"
 	"net/http"
@@ -8,11 +9,16 @@ import (
 	"time"
 )
 
+//go:embed VERSION
+var VERSION string
+
 func root(w http.ResponseWriter, r *http.Request) {
 	type MenuEntry struct {
 		endpoint, name, desc string
 	}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	e := html.EscapeString
 
 	fmt.Fprintf(w, `<!DOCTYPE html>
 <html lang="en">
@@ -20,8 +26,7 @@ func root(w http.ResponseWriter, r *http.Request) {
 <meta charset="utf-8">
 <title>unstable-http-server</title>
 </head>
-<body><p>`)
-	e := html.EscapeString
+<body><p><small>Version: %s</small></p><p>`, e(VERSION))
 	for _, entry := range []MenuEntry{
 		MenuEntry{"", "Home", "you are here"},
 		MenuEntry{"info", "Info", "basic server info (e.g. hostname)"},

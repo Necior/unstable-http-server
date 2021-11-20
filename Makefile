@@ -1,6 +1,6 @@
 version := $(shell cat VERSION)
 
-unstable-http-server: unstable-http-server.go
+unstable-http-server: unstable-http-server.go VERSION
 	go build unstable-http-server.go
 
 .PHONY:
