@@ -1,3 +1,5 @@
+version := $(shell cat VERSION)
+
 unstable-http-server: unstable-http-server.go
 	go build unstable-http-server.go
 
@@ -10,6 +12,6 @@ run: unstable-http-server
 	./unstable-http-server
 
 .PHONY:
-publish-dev-docker-image: unstable-http-server.go Dockerfile
-	docker buildx build --platform linux/arm64,linux/amd64 -t necior/unstable-http-server:dev --push .
+publish-dev-docker-image: unstable-http-server.go Dockerfile VERSION
+	docker buildx build --platform linux/arm64,linux/amd64 -t necior/unstable-http-server:$(version) --push .
 
