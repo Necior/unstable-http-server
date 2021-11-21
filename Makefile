@@ -12,6 +12,6 @@ run: unstable-http-server
 	./unstable-http-server
 
 .PHONY:
-publish-dev-docker-image: unstable-http-server.go Dockerfile VERSION
+publish-docker-image: unstable-http-server.go Dockerfile VERSION
 	docker buildx build --platform linux/arm64,linux/amd64 -t necior/unstable-http-server:$(version) --push .
 
