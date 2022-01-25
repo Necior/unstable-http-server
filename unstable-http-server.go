@@ -47,8 +47,11 @@ func info(w http.ResponseWriter, r *http.Request) {
 }
 
 func cpu(w http.ResponseWriter, r *http.Request) {
-	for {
-	}
+	go func() {
+		for {
+		}
+	}()
+	fmt.Fprintf(w, "Done :)")
 }
 
 func ram(w http.ResponseWriter, r *http.Request) {
