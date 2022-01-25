@@ -28,11 +28,11 @@ func root(w http.ResponseWriter, r *http.Request) {
 </head>
 <body><p><small>Version: %s</small></p><p>`, e(VERSION))
 	for _, entry := range []MenuEntry{
-		MenuEntry{"", "Home", "you are here"},
-		MenuEntry{"info", "Info", "basic server info (e.g. hostname)"},
-		MenuEntry{"cpu", "CPU", "run a busy loop"},
-		MenuEntry{"ram", "RAM", "start exponential memory allocation"},
-		MenuEntry{"oof", "Oof", "kill the server"},
+		{"", "Home", "you are here"},
+		{"info", "Info", "basic server info (e.g. hostname)"},
+		{"cpu", "CPU", "run a busy loop"},
+		{"ram", "RAM", "start exponential memory allocation"},
+		{"oof", "Oof", "kill the server"},
 	} {
 		fmt.Fprintf(w, "<a href=\"/%s\">%s</a> (%s)<br/>", e(entry.endpoint), e(entry.name), e(entry.desc))
 	}
